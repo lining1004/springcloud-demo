@@ -1,0 +1,5 @@
+server:
+  port: 8083  # server2的配置信息
+eureka:
+  instance:
+    hostname: peer2   # 指定服务器地址

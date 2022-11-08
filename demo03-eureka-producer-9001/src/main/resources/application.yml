@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: producer # 微服务中唯一标识： eureka服务列表
+eureka:
+  client:
+    service-url:    #注册中心的ip地址
+      defaultZone: http://localhost:8081/eureka/
+  instance:
+    prefer-ip-address: true #使用ip地址注册服务，显示ip
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+---
+server:
+  port: 9001 # 服务B的集群server1端口信息
+spring:
+  profiles: dev   #当启动项目时，可以指定使用什么配置信息
+---
+server:
+  port: 9004 # 服务B的集群server2端口信息
+spring:
+  profiles: test
+---
+server:
+  port: 9005 # 服务B的集群server3端口信息
+spring:
+  profiles: prod

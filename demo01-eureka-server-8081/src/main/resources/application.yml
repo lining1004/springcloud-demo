@@ -1,0 +1,15 @@
+server:
+  port: 8081 # 注册中心程序端口号
+spring:
+  application:
+    name: eureka-server # 微服务中唯一标识程序的名称
+# 配置eureka信息： 客户端和服务器端模式 eureka-server
+eureka:
+  client:
+    register-with-eureka: false # 是否将自己作为客户端注册到服务中心 当前的程序本身就是eureka-server
+    fetch-registry: false   # 是否获取注册信息，当前是服务中心程序，不需要获取注册信息，只进行管理和维护注册信息
+    service-url:       # 注册中心的地址
+      defaultZone: http://localhost:8081/eureka/
+  server:
+    enable-self-preservation: false # 关闭自我保护机制 开发中推荐使用关闭状态
+    eviction-interval-timer-in-ms: 60000 #定时任务：清除状态为不可用的微服务信息
