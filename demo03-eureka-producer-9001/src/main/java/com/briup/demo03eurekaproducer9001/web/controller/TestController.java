@@ -19,8 +19,11 @@ public class TestController {
      *
      * @return
      */
+
     @GetMapping("/test")
-    public String test(){
+    public String test() throws Exception{
+        //模拟服务B长时间处理
+        //Thread.sleep(10000); //阻塞10s
         return "hello world "+port;
     }
 }

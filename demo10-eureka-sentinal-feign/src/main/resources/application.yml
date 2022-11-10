@@ -1,0 +1,22 @@
+server:
+  port: 9002     #端口： 浏览器访问springMVC资源
+spring:
+  application:
+    name: consumer   # 消费者
+  cloud:
+    sentinel:
+      transport:
+        dashboard: http://localhost:8888   #控制面板路径
+        port: 8719    #内部的端口号，传递配置规则
+      eager: true   # 立即加载
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+#sentinel信息
+feign:
+  sentinel:
+    enabled: true   #开启 熔断机制  sentinel

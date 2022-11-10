@@ -22,6 +22,9 @@
 		<module>demo05-eureka-consumer-ribbon</module>
 		<module>demo06-eureka-consumer-feign</module>
 		<module>demo07-consul-consumer-feign</module>
+		<module>demo08-eureka-hystrix-ribbon</module>
+		<module>demo09-eureka-hystrix-feign</module>
+		<module>demo10-eureka-sentinal-feign</module>
 	</modules>
 
 	<properties>

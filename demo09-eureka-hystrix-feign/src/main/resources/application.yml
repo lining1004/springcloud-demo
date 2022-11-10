@@ -1,0 +1,15 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: consumer
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+feign:
+  hystrix:
+    enabled: true   #开启熔断机制
