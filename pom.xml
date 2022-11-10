@@ -25,6 +25,7 @@
 		<module>demo08-eureka-hystrix-ribbon</module>
 		<module>demo09-eureka-hystrix-feign</module>
 		<module>demo10-eureka-sentinal-feign</module>
+		<module>demo11-eureka-zuul-8888</module>
 	</modules>
 
 	<properties>

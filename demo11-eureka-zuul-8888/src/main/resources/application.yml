@@ -1,0 +1,27 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: zuul
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+zuul:
+  ignored-services:   #设置不需要zuul自动代理的服务
+   # - producer    #无法被访问
+    - other
+    - abc
+  routes:    #配置多个路由规则 Map
+    api-test:   #规则1： 访问producer服务路径规则
+      path: /api/test/**    # 映射路径的匹配规则；当访问/api/test/abc
+      serviceId: producer    #映射访问的服务  /producer/abc
+    local:    #配置路由规则2
+      path: /api/local/**
+      url: forward:/
+
+  sensitive-headers:    #清空默认的敏感头信息：Authorization cookie setCookie
+  add-host-header: true  # 响应中添加网关地址

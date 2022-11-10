@@ -2,7 +2,11 @@ package com.briup.demo03eurekaproducer9001.web.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @Author lining
@@ -25,5 +29,16 @@ public class TestController {
         //模拟服务B长时间处理
         //Thread.sleep(10000); //阻塞10s
         return "hello world "+port;
+    }
+    @GetMapping("/token")  // /api/test/token
+    public String token(@RequestHeader(name = "Authorization",required = false) String Authorization){
+        return "获取到Authorization："+Authorization;
+    }
+    @GetMapping("/redirect")
+    public void redirect(HttpServletResponse response) throws IOException {
+        //进行重定向操作： 会导致暴露的微服务实际地址  localhost:9001
+        //response.sendRedirect("/test");
+        //通过设置网关地址添加响应头： localhost:8888/
+        response.sendRedirect("/api/test/test");
     }
 }
